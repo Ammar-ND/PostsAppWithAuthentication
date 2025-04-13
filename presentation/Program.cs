@@ -17,10 +17,10 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 
-// Add services to the container.
+
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 builder.Services.AddAuthentication(options =>
 {
@@ -53,7 +53,7 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1",
         Description = "A clean REST API for managing posts (Create, Read, Update, Delete)"
     });
-    // 👇 Optional: Enables reading of XML comments from your code (for detailed documentation)
+
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);
@@ -91,14 +91,14 @@ builder.Host.UseSerilog();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 app.UseCors("AllowFrontend");
-// app.UseHttpsRedirection();  // Commented out since we're using HTTP
+
 app.UseAuthentication();
 app.UseAuthorization();
 
